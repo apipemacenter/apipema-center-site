@@ -13,6 +13,25 @@ const {
   description = 'O Apipema Center é o seu ponto de encontro em Ondina, com lojas, serviços e conveniência para o seu dia a dia.',
   homePrefix = '',
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://www.apipemacenter.com.br').toString();
+const ogImageUrl = new URL('/images/apipema-hero.jpg', Astro.site ?? 'https://www.apipemacenter.com.br').toString();
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ShoppingCenter',
+  name: 'Apipema Center',
+  url: 'https://www.apipemacenter.com.br',
+  image: ogImageUrl,
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rua Professor Sabino Silva, 836',
+    addressLocality: 'Salvador',
+    addressRegion: 'BA',
+    addressCountry: 'BR',
+  },
+};
 ---
 
 <!doctype html>
@@ -22,8 +41,24 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="theme-color" content="#F7F6F0" />
     <link rel="icon" type="image/png" href="/brand/apipema-center-logo.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Apipema Center" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

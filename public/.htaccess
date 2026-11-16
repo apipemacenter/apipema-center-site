@@ -13,6 +13,10 @@ Options -Indexes
   RewriteEngine On
   RewriteBase /
 
+  # Redirect non-www apex domain to canonical https://www.apipemacenter.com.br
+  RewriteCond %{HTTP_HOST} ^apipemacenter\.com\.br$ [NC]
+  RewriteRule ^ https://www.apipemacenter.com.br%{REQUEST_URI} [L,R=301]
+
   # Enforce HTTPS when behind Hostinger SSL proxy (skip localhost)
   RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
   RewriteCond %{HTTPS} !=on
