@@ -1,0 +1,44 @@
+$color-brand: #96BE3D;
+$color-brand-orb: #95BE3E;
+$color-brand-dark: #789C2C;
+$color-ink: #252321;
+$color-muted: #6F706B;
+$color-surface: #F7F6F0;
+$color-surface-alt: #EFECE3;
+$color-white: #FFFFFF;
+$color-line: rgba(37, 35, 33, 0.16);
+
+:root {
+  --color-brand: #{$color-brand};
+  --color-brand-orb: #{$color-brand-orb};
+  --color-brand-dark: #{$color-brand-dark};
+  --color-brand-tint: rgba(149, 190, 62, 0.13);
+  --color-brand-orb-soft: rgba(149, 190, 62, 0.18);
+  --color-ink: #{$color-ink};
+  --color-muted: #{$color-muted};
+  --color-surface: #{$color-surface};
+  --color-surface-alt: #{$color-surface-alt};
+  --color-white: #{$color-white};
+  --color-line: #{$color-line};
+
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --content-width: 1440px;
+  --page-gutter: clamp(1.25rem, 5vw, 5rem);
+
+  --header-height-desktop: clamp(5.125rem, 6vw, 5.75rem);
+  --header-top-offset: clamp(1rem, 2.2vw, 1.75rem);
+
+  --radius-sm: 0.75rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 1.75rem;
+  --radius-nav: 999px;
+  --radius-button: 999px;
+
+  --shadow-nav: 0 10px 35px rgba(37, 35, 33, 0.08);
+  --shadow-nav-scrolled: 0 14px 40px rgba(37, 35, 33, 0.12);
+  --shadow-card: 0 12px 32px rgba(37, 35, 33, 0.05);
+
+  --transition-fast: 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-base: 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}

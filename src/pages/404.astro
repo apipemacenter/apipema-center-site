@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon/Icon.astro';
+import Footer from '../components/Footer/Footer.astro';
+---
+
+<BaseLayout
+  title="Página em breve — Apipema Center"
+  description="Explore a página inicial do Apipema Center em Ondina, Salvador."
+  homePrefix="/"
+>
+  <section class="not-found" aria-labelledby="not-found-title">
+    <div class="container not-found__container">
+      <span class="not-found__eyebrow">Apipema Center • Ondina</span>
+      <h1 id="not-found-title" class="not-found__title">
+        Estamos preparando <span class="not-found__accent">novidades por aqui.</span>
+      </h1>
+      <p class="not-found__text">
+        A página acessada ainda não está disponível ou foi movida. Volte para
+        a página inicial para conhecer nossas lojas, serviços e localização.
+      </p>
+      <div class="not-found__actions">
+        <a href="/" class="not-found__cta">
+          <span>Voltar para a página inicial</span>
+          <Icon name="arrow-right" size={18} strokeWidth={2.1} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer homePrefix="/" />
+</BaseLayout>
+
+<style lang="scss">
+  .not-found {
+    min-height: calc(100svh - 9rem);
+    display: flex;
+    align-items: center;
+    padding-top: calc(var(--header-height-desktop) + var(--header-top-offset) + 3rem);
+    padding-bottom: 4rem;
+    background-color: var(--color-surface);
+  }
+
+  .not-found__container {
+    max-width: 42rem;
+    text-align: center;
+  }
+
+  .not-found__eyebrow {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-brand-dark);
+    margin-bottom: 1rem;
+  }
+
+  .not-found__title {
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: var(--color-ink);
+  }
+
+  .not-found__accent {
+    font-weight: 800;
+    color: var(--color-brand-orb);
+  }
+
+  .not-found__text {
+    margin-top: 1.15rem;
+    margin-inline: auto;
+    max-width: 32rem;
+    font-size: 1.03125rem;
+    line-height: 1.65;
+    color: var(--color-muted);
+  }
+
+  .not-found__actions {
+    margin-top: 2rem;
+  }
+
+  .not-found__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.125rem;
+    padding: 0.85rem 1.85rem;
+    border-radius: var(--radius-button);
+    background-color: var(--color-brand-orb);
+    color: var(--color-white);
+    font-weight: 600;
+    box-shadow: 0 4px 0 rgba(120, 156, 44, 0.25);
+    transition: background-color var(--transition-fast);
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-brand-dark);
+    }
+  }
+</style>

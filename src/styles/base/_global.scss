@@ -1,0 +1,65 @@
+@use '../abstracts/mixins' as *;
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+:focus-visible {
+  @include focus-ring();
+}
+
+.sr-only {
+  @include visually-hidden;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-button);
+  background-color: var(--color-ink);
+  color: var(--color-white);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: top var(--transition-fast);
+
+  &:focus {
+    top: 1rem;
+  }
+}
+
+.container {
+  @include container;
+}
+
+main {
+  position: relative;
+  overflow-x: clip;
+}
+
+[id] {
+  scroll-margin-top: calc(var(--header-height-desktop) + var(--header-top-offset) + 1rem);
+}
+
+.page-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  height: 2.5px;
+  background: linear-gradient(90deg, var(--color-brand-orb) 0%, var(--color-brand-dark) 100%);
+  transform-origin: left center;
+  transform: scaleX(0);
+  pointer-events: none;
+}

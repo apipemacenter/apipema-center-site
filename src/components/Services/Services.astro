@@ -1,0 +1,172 @@
+---
+import Icon from '../Icon/Icon.astro';
+import type { IconName } from '../Icon/Icon.astro';
+import './Services.scss';
+
+interface ServiceFeature {
+  icon: IconName;
+  title: string;
+  description: string;
+}
+
+const features: ServiceFeature[] = [
+  {
+    icon: 'shopping-bag',
+    title: 'Lojas variadas',
+    description:
+      'Moda, beleza, gastronomia e muito mais para você encontrar tudo em um só lugar.',
+  },
+  {
+    icon: 'car',
+    title: 'Manobrista',
+    description:
+      'Seus compromissos com mais praticidade, com serviço de manobrista no Apipema Center.',
+  },
+  {
+    icon: 'map-pin',
+    title: 'Excelente localização',
+    description:
+      'No coração de Ondina, com fácil acesso e transporte para toda Salvador.',
+  },
+];
+---
+
+<section id="servicos" class="services" aria-labelledby="servicos-title" data-services-section>
+  <!-- SVG clip-path definition for the top-right curved architectural vignette -->
+  <svg class="services__defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <clipPath id="services-vignette-clip" clipPathUnits="objectBoundingBox">
+        <path d="M 0.04 0 L 1 0 L 1 0.90 C 0.85 0.98 0.68 0.91 0.50 0.73 C 0.32 0.55 0.15 0.33 0.04 0 Z" />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <!-- Subtle organic contour lines & Flat Design 2.0 green accents -->
+  <div class="services__backdrop" aria-hidden="true">
+    <svg
+      class="services__contours"
+      viewBox="0 0 1440 760"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M -40 245 C 120 140 230 75 340 -20"
+        stroke="#95BE3E"
+        stroke-opacity="0.28"
+        stroke-width="1.25"
+        data-services-draw
+      />
+      <path
+        d="M 1015 775 C 1150 675 1300 638 1475 648"
+        stroke="#95BE3E"
+        stroke-opacity="0.45"
+        stroke-width="1.4"
+        data-services-draw
+      />
+    </svg>
+
+    <div class="services__wave services__wave--corner" data-services-wave>
+      <svg viewBox="0 0 360 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M 360 12 C 255 48 165 110 85 155 C 175 180 265 225 360 272 Z"
+          fill="#DCE9BE"
+          fill-opacity="0.82"
+        />
+        <path
+          d="M 360 46 C 280 78 205 124 140 162 C 215 184 290 218 360 256 Z"
+          fill="#95BE3E"
+          fill-opacity="0.88"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Curved upper-right architectural image vignette + locked rim contour & wave -->
+  <div class="services__vignette" data-services-vignette>
+    <div class="services__media" data-services-media>
+      <picture class="services__picture">
+        <source srcset="/images/apipema-interior.avif" type="image/avif" />
+        <source srcset="/images/apipema-interior.webp" type="image/webp" />
+        <img
+          src="/images/apipema-interior.jpg"
+          width="1376"
+          height="768"
+          alt="Ilustração arquitetônica de referência de uma galeria comercial luminosa com vegetação e vitrines"
+          class="services__image"
+          loading="lazy"
+          decoding="async"
+          data-services-parallax-img
+        />
+      </picture>
+      <div class="services__media-fade" aria-hidden="true"></div>
+    </div>
+
+    <svg
+      class="services__vignette-rim"
+      viewBox="0 0 820 540"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="services-rim-fade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#95BE3E" stop-opacity="0" />
+          <stop offset="28%" stop-color="#95BE3E" stop-opacity="0.48" />
+          <stop offset="100%" stop-color="#95BE3E" stop-opacity="0.52" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M 820 404 C 740 448 645 486 552 496 C 645 524 738 524 820 492 Z"
+        fill="#C9DFA0"
+        fill-opacity="0.72"
+      />
+      <path
+        d="M 33 0 C 123 178 262 297 410 394 C 558 491 697 529 820 486"
+        stroke="url(#services-rim-fade)"
+        stroke-width="1.75"
+        data-services-draw
+      />
+    </svg>
+  </div>
+
+  <div class="container services__container">
+    <header class="services__header">
+      <div class="services__eyebrow" data-services-eyebrow>
+        <span class="services__eyebrow-text">Serviços &amp; Conveniência</span>
+        <span class="services__eyebrow-rule" aria-hidden="true" data-services-rule></span>
+      </div>
+
+      <h2 id="servicos-title" class="services__title">
+        <span class="services__title-line" data-services-line>
+          Comodidade pensada para a
+        </span>
+        <span class="services__title-line" data-services-line>
+          rotina de <strong class="services__title-accent" data-services-accent>Ondina</strong>
+        </span>
+      </h2>
+
+      <p class="services__lead" data-services-lead>
+        Um centro comercial completo, com serviços que facilitam seu dia e
+        tornam sua experiência ainda melhor.
+      </p>
+    </header>
+
+    <div class="services__grid" data-services-grid>
+      {features.map((item) => (
+        <article class="service-card" data-service-card>
+          <span class="service-card__spotlight" aria-hidden="true"></span>
+          <div class="service-card__icon-wrap">
+            <span class="service-card__ring" aria-hidden="true" data-service-ring></span>
+            <span class="service-card__icon" aria-hidden="true" data-service-icon>
+              <Icon name={item.icon} size={22} strokeWidth={1.8} />
+            </span>
+          </div>
+          <h3 class="service-card__title">{item.title}</h3>
+          <p class="service-card__text">{item.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

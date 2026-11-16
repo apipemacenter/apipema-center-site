@@ -1,0 +1,68 @@
+---
+import Header from '../components/Header/Header.astro';
+import '../styles/main.scss';
+
+interface Props {
+  title?: string;
+  description?: string;
+  homePrefix?: string;
+}
+
+const {
+  title = 'Apipema Center — Tudo o que você precisa, em um só lugar',
+  description = 'O Apipema Center é o seu ponto de encontro em Ondina, com lojas, serviços e conveniência para o seu dia a dia.',
+  homePrefix = '',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#F7F6F0" />
+    <link rel="icon" type="image/png" href="/brand/apipema-center-logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script is:inline>
+      document.documentElement.classList.replace('no-js', 'js');
+    </script>
+  </head>
+  <body>
+    <div class="page-progress" aria-hidden="true" data-page-progress></div>
+
+    <a class="skip-link" href="#conteudo-principal">
+      Ir para o conteúdo principal
+    </a>
+
+    <Header homePrefix={homePrefix} />
+
+    <main id="conteudo-principal">
+      <slot />
+    </main>
+
+    <script>
+      import { initPageFlow } from '../scripts/page-flow';
+      import { initNavigation } from '../scripts/navigation';
+      import { initHeroAnimations } from '../components/Hero/hero-animations';
+      import { initStoresSection } from '../components/Stores/stores-animations';
+      import { initServicesSection } from '../components/Services/services-animations';
+      import { initLocationSection } from '../components/Location/location-animations';
+
+      initPageFlow();
+      initNavigation();
+      initHeroAnimations();
+      initStoresSection();
+      initServicesSection();
+      initLocationSection();
+    </script>
+  </body>
+</html>

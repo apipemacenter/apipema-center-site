@@ -1,0 +1,155 @@
+---
+import Icon from '../Icon/Icon.astro';
+import './Location.scss';
+---
+
+<section id="sobre" class="location" aria-labelledby="como-chegar-title" data-location-section>
+  <span id="como-chegar" class="location__anchor" aria-hidden="true"></span>
+
+  <!-- Visual bridge continuing Services' lower-right green curve -->
+  <div class="location__backdrop" aria-hidden="true">
+    <svg
+      class="location__contours"
+      viewBox="0 0 1440 640"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M 1020 -10 C 1150 95 1300 125 1475 110"
+        stroke="#95BE3E"
+        stroke-opacity="0.35"
+        stroke-width="1.35"
+        data-location-draw
+      />
+      <path
+        d="M -40 520 C 140 580 310 565 460 650"
+        stroke="#95BE3E"
+        stroke-opacity="0.28"
+        stroke-width="1.25"
+        data-location-draw
+      />
+    </svg>
+
+    <div class="location__arc location__arc--bottom-left" data-location-arc>
+      <svg viewBox="0 0 320 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="-20" cy="190" r="180" fill="#DCE9BE" fill-opacity="0.72" />
+        <circle cx="-45" cy="215" r="160" fill="#95BE3E" fill-opacity="0.54" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="container location__container">
+    <div class="location__grid">
+      <div class="location__content">
+        <div class="location__eyebrow" data-location-eyebrow>
+          <span class="location__eyebrow-text">Sobre &amp; Localização</span>
+          <span class="location__eyebrow-rule" aria-hidden="true" data-location-rule></span>
+        </div>
+
+        <h2 id="como-chegar-title" class="location__title">
+          <span class="location__title-line" data-location-line>
+            Seu ponto de encontro
+          </span>
+          <span class="location__title-line" data-location-line>
+            no coração de <strong class="location__title-accent">Ondina</strong>
+          </span>
+        </h2>
+
+        <p class="location__lead" data-location-lead>
+          Localizado na Rua Professor Sabino Silva, 836, o Apipema Center reúne
+          compras, gastronomia, estética e conveniência em um ambiente acolhedor
+          e de fácil acesso em Salvador.
+        </p>
+
+        <div id="contato" class="location__details" data-location-details>
+          <div class="location-item" data-location-item>
+            <span class="location-item__icon" aria-hidden="true" data-location-icon>
+              <Icon name="map-pin" size={19} strokeWidth={1.85} />
+            </span>
+            <div class="location-item__body">
+              <span class="location-item__label">Endereço</span>
+              <strong class="location-item__value">
+                Rua Professor Sabino Silva, 836 — Jardim Apipema (Ondina), Salvador — BA
+              </strong>
+            </div>
+          </div>
+
+          <div class="location-item" data-location-item>
+            <span class="location-item__icon" aria-hidden="true" data-location-icon>
+              <Icon name="clock" size={19} strokeWidth={1.85} />
+            </span>
+            <div class="location-item__body">
+              <span class="location-item__label">Funcionamento</span>
+              <strong class="location-item__value">
+                Segunda a sexta, das 9h às 19h • Sábado, das 9h às 18h
+              </strong>
+            </div>
+          </div>
+
+          <div class="location-item" data-location-item>
+            <span class="location-item__icon" aria-hidden="true" data-location-icon>
+              <Icon name="car" size={19} strokeWidth={1.85} />
+            </span>
+            <div class="location-item__body">
+              <span class="location-item__label">Comodidade</span>
+              <strong class="location-item__value">
+                Serviço de manobrista e acesso facilitado na entrada principal
+              </strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="location__actions" data-location-cta>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Apipema+Center+Rua+Professor+Sabino+Silva+836+Ondina+Salvador"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="location__cta"
+            data-magnetic-location-cta
+          >
+            <span class="location__cta-sheen" aria-hidden="true"></span>
+            <Icon name="map-pin" size={18} strokeWidth={2} />
+            <span>Abrir rota no mapa</span>
+            <span class="location__cta-arrow" aria-hidden="true">
+              <Icon name="arrow-right" size={17} strokeWidth={2.1} />
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="location__visual" data-location-visual>
+        <div class="location-card">
+          <div class="location-card__media">
+            <picture class="location-card__picture">
+              <source srcset="/images/apipema-hero.avif" type="image/avif" />
+              <source srcset="/images/apipema-hero.webp" type="image/webp" />
+              <img
+                src="/images/apipema-hero.jpg"
+                width="1920"
+                height="1092"
+                alt="Fachada principal do Apipema Center na Rua Professor Sabino Silva em Ondina"
+                class="location-card__img"
+                loading="lazy"
+                decoding="async"
+                data-location-parallax-img
+              />
+            </picture>
+            <div class="location-card__overlay" aria-hidden="true"></div>
+          </div>
+
+          <div class="location-card__badge" data-location-badge>
+            <span class="location-card__pulse" aria-hidden="true">
+              <span class="location-card__pulse-ring" data-location-pulse></span>
+              <span class="location-card__pulse-dot"></span>
+            </span>
+            <div>
+              <span class="location-card__badge-eyebrow">Jardim Apipema • Ondina</span>
+              <strong class="location-card__badge-title">Apipema Center</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

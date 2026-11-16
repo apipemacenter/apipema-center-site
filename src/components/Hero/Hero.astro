@@ -1,0 +1,59 @@
+---
+import Amenities from '../Amenities/Amenities.astro';
+import Icon from '../Icon/Icon.astro';
+import './Hero.scss';
+---
+
+<section id="inicio" class="hero" aria-labelledby="hero-title" data-hero-section>
+  <div class="hero__media" data-hero-media>
+    <picture class="hero__picture">
+      <source srcset="/images/apipema-hero.avif" type="image/avif" />
+      <source srcset="/images/apipema-hero.webp" type="image/webp" />
+      <img
+        src="/images/apipema-hero.jpg"
+        width="1920"
+        height="1092"
+        alt="Fachada do Apipema Center em Ondina, Salvador"
+        class="hero__image"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </picture>
+    <div class="hero__scrim" aria-hidden="true"></div>
+  </div>
+
+
+  <div class="container hero__container">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <h1 id="hero-title" class="hero__title">
+          <span class="hero__title-line hero__title-line--primary" data-hero-line>
+            Tudo o que você precisa,
+          </span>
+          <span class="hero__title-line hero__title-line--accent" data-hero-line>
+            em um só lugar.
+          </span>
+        </h1>
+
+        <p class="hero__description" data-hero-desc>
+          O Apipema Center é o seu ponto de encontro em Ondina, com lojas,
+          serviços e conveniência para o seu dia a dia.
+        </p>
+
+        <div class="hero__actions" data-hero-cta>
+          <a href="#como-chegar" class="hero__cta" data-magnetic-cta>
+            <span class="hero__cta-sheen" aria-hidden="true"></span>
+            <span class="hero__cta-label">Venha nos visitar</span>
+            <span class="hero__cta-icon" aria-hidden="true">
+              <Icon name="arrow-right" size={18} strokeWidth={2.1} />
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__amenities">
+        <Amenities />
+      </div>
+    </div>
+  </div>
+</section>

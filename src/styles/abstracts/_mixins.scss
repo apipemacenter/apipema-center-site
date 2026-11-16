@@ -1,0 +1,25 @@
+@use 'variables' as *;
+
+@mixin container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+@mixin focus-ring($color: var(--color-brand-dark), $offset: 3px) {
+  outline: 2px solid $color;
+  outline-offset: $offset;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,59 @@
+---
+import Icon from '../Icon/Icon.astro';
+import './Footer.scss';
+
+interface Props {
+  homePrefix?: string;
+}
+
+const { homePrefix = '' } = Astro.props;
+
+const footerLinks = [
+  { label: 'Início', href: `${homePrefix}#inicio` },
+  { label: 'Nossas Lojas', href: `${homePrefix}#lojas` },
+  { label: 'Serviços', href: `${homePrefix}#servicos` },
+  { label: 'Sobre', href: `${homePrefix}#sobre` },
+  { label: 'Como chegar', href: `${homePrefix}#como-chegar` },
+];
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <a href={homePrefix || '#inicio'} class="site-footer__brand" aria-label="Voltar ao início — Apipema Center">
+      <img
+        src="/brand/apipema-center-logo.png"
+        alt="Apipema Center"
+        width="1156"
+        height="221"
+        class="site-footer__logo"
+        loading="lazy"
+      />
+    </a>
+
+    <nav class="site-footer__nav" aria-label="Navegação do rodapé">
+      <ul class="site-footer__links">
+        {footerLinks.map((item) => (
+          <li>
+            <a href={item.href} class="site-footer__link">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="site-footer__meta">
+      <p class="site-footer__copy">
+        Rua Professor Sabino Silva, 836 — Ondina, Salvador
+      </p>
+      <a
+        href="#inicio"
+        class="site-footer__top"
+        aria-label="Voltar ao topo da página"
+        data-back-to-top
+      >
+        <Icon name="arrow-up" size={17} strokeWidth={2} />
+      </a>
+    </div>
+  </div>
+</footer>

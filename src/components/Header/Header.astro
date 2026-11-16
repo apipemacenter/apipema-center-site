@@ -1,0 +1,188 @@
+---
+import Icon from '../Icon/Icon.astro';
+import './Header.scss';
+
+interface Props {
+  homePrefix?: string;
+}
+
+const { homePrefix = '' } = Astro.props;
+
+interface NavLink {
+  label: string;
+  href: string;
+  id: string;
+  active?: boolean;
+}
+
+const navLinks: NavLink[] = [
+  { label: 'Início', href: `${homePrefix}#inicio`, id: 'inicio', active: !homePrefix },
+  { label: 'Lojas', href: `${homePrefix}#lojas`, id: 'lojas' },
+  { label: 'Serviços', href: `${homePrefix}#servicos`, id: 'servicos' },
+  { label: 'Sobre', href: `${homePrefix}#sobre`, id: 'sobre' },
+  { label: 'Contato', href: `${homePrefix}#contato`, id: 'contato' },
+];
+
+const quickDirectory = [
+  { title: 'Lojas variadas', category: 'Compras', href: `${homePrefix}#lojas` },
+  { title: 'Manobrista', category: 'Serviços', href: `${homePrefix}#servicos` },
+  { title: 'Excelente localização', category: 'Ondina', href: `${homePrefix}#como-chegar` },
+  { title: 'Sobre o Apipema Center', category: 'Institucional', href: `${homePrefix}#sobre` },
+  { title: 'Como chegar e horários', category: 'Contato', href: `${homePrefix}#contato` },
+];
+---
+
+<header class="site-header" data-site-header data-hero-header>
+  <div class="container">
+    <div class="site-header__bar">
+      <a
+        class="site-header__brand"
+        href={homePrefix || '#inicio'}
+        aria-label="Apipema Center — Página inicial"
+      >
+        <img
+          src="/brand/apipema-center-logo.png"
+          alt="Apipema Center"
+          width="1156"
+          height="221"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </a>
+
+      <nav class="site-header__nav" aria-label="Navegação principal">
+        <ul class="site-header__list">
+          {navLinks.map((link) => (
+            <li class="site-header__item">
+              <a
+                href={link.href}
+                class:list={['site-header__link', { 'is-active': link.active }]}
+                data-nav-link={link.id}
+                aria-current={link.active ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <button
+          type="button"
+          class="site-header__search-btn"
+          aria-label="Buscar no Apipema Center"
+          aria-expanded="false"
+          aria-controls="site-search-panel"
+          data-search-toggle
+        >
+          <Icon name="search" size={20} strokeWidth={1.85} />
+        </button>
+
+        <a href={`${homePrefix}#como-chegar`} class="site-header__directions">
+          <Icon name="map-pin" size={17} strokeWidth={1.9} />
+          <span>Como chegar</span>
+        </a>
+
+        <button
+          type="button"
+          class="site-header__menu-btn"
+          aria-label="Abrir menu de navegação"
+          aria-expanded="false"
+          aria-controls="mobile-nav-panel"
+          data-menu-toggle
+        >
+          <span class="site-header__menu-icon site-header__menu-icon--open">
+            <Icon name="menu" size={22} strokeWidth={1.85} />
+          </span>
+          <span class="site-header__menu-icon site-header__menu-icon--close">
+            <Icon name="x" size={22} strokeWidth={1.85} />
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="site-search-panel"
+      class="site-header__search-panel"
+      role="region"
+      aria-label="Busca rápida"
+      hidden
+      data-search-panel
+    >
+      <form class="site-header__search-form" role="search" data-search-form>
+        <label class="sr-only" for="site-search-input">
+          O que você procura no Apipema Center?
+        </label>
+        <span class="site-header__search-field-icon" aria-hidden="true">
+          <Icon name="search" size={18} strokeWidth={1.8} />
+        </span>
+        <input
+          id="site-search-input"
+          type="search"
+          class="site-header__search-input"
+          placeholder="Buscar lojas, serviços ou conveniências..."
+          autocomplete="off"
+          data-search-input
+        />
+        <button
+          type="button"
+          class="site-header__search-close"
+          aria-label="Fechar busca"
+          data-search-close
+        >
+          <Icon name="x" size={18} strokeWidth={1.8} />
+        </button>
+      </form>
+
+      <ul class="site-header__search-results" data-search-results>
+        {quickDirectory.map((entry) => (
+          <li data-search-item={entry.title.toLowerCase() + ' ' + entry.category.toLowerCase()}>
+            <a href={entry.href} class="site-header__search-result" data-search-link>
+              <span class="site-header__search-result-title">{entry.title}</span>
+              <span class="site-header__search-result-cat">{entry.category}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="site-header__search-empty" hidden data-search-empty>
+        Nenhum resultado encontrado. Explore nossas seções abaixo.
+      </p>
+    </div>
+
+    <div
+      id="mobile-nav-panel"
+      class="site-header__mobile-panel"
+      hidden
+      data-mobile-panel
+    >
+      <nav aria-label="Navegação mobile">
+        <ul class="site-header__mobile-list">
+          {navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={['site-header__mobile-link', { 'is-active': link.active }]}
+                data-mobile-link
+                data-nav-link={link.id}
+                aria-current={link.active ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class="site-header__mobile-cta">
+          <a
+            href={`${homePrefix}#como-chegar`}
+            class="site-header__directions site-header__directions--mobile"
+            data-mobile-link
+          >
+            <Icon name="map-pin" size={17} strokeWidth={1.9} />
+            <span>Como chegar</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
