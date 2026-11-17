@@ -1,5 +1,6 @@
 # Hostinger / LiteSpeed / Apache static site configuration & security hardening
 Options -Indexes
+DirectoryIndex index.html
 ServerSignature Off
 
 # Protect hidden files (allow .well-known for SSL verification) and build metadata
@@ -21,11 +22,10 @@ ServerSignature Off
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /
 
-  # Redirect non-www apex domain to canonical https://www.apipemacenter.com.br
-  RewriteCond %{HTTP_HOST} ^apipemacenter\.com\.br$ [NC]
-  RewriteRule ^ https://www.apipemacenter.com.br%{REQUEST_URI} [L,R=301]
+  # Redirect www to canonical https://apipemacenter.com.br
+  RewriteCond %{HTTP_HOST} ^www\.apipemacenter\.com\.br$ [NC]
+  RewriteRule ^(.*)$ https://apipemacenter.com.br/$1 [L,R=301]
 
   # Enforce HTTPS when behind Hostinger SSL proxy (skip localhost)
   RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
@@ -37,7 +37,7 @@ ServerSignature Off
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
-  RewriteRule ^(.+?)/?$ $1.html [L]
+  RewriteRule ^([^.]+)$ $1.html [L]
 </IfModule>
 
 ErrorDocument 404 /404.html

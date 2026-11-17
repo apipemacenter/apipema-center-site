@@ -1,0 +1,37 @@
+# Root router for Hostinger Git deployments into public_html/
+# Serves the pre-built static site in /dist/ while blocking raw source & config files.
+Options -Indexes
+DirectoryIndex index.html
+ServerSignature Off
+
+<FilesMatch "^\.(?!well-known/)">
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "^(package(-lock)?\.json|tsconfig\.json|astro\.config\..*|.*\.md|Frente\.jpg\.jpeg|Assinatura Visual - Apipema Center\.png)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Block direct access to source/internal directories
+  RewriteRule ^(src|public|node_modules|\.git|\.astro|lojas\ apipema)(/|$) - [F,L]
+
+  # Redirect www to canonical https://apipemacenter.com.br
+  RewriteCond %{HTTP_HOST} ^www\.apipemacenter\.com\.br$ [NC]
+  RewriteRule ^(.*)$ https://apipemacenter.com.br/$1 [L,R=301]
+
+  # Enforce HTTPS (skip localhost)
+  RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Internally route public requests to /dist/
+  RewriteCond %{REQUEST_URI} !^/dist/
+  RewriteRule ^(.*)$ dist/$1 [L]
+</IfModule>
+
+ErrorDocument 404 /dist/404.html
